@@ -1,0 +1,270 @@
+@font-face {
+	font-family: "page";
+	src: url(fonts/deja_serif_bold.ttf);
+}
+
+@font-face {
+	font-family: "paragraph";
+	src: url(fonts/lib_serif.ttf);
+}
+
+@font-face {
+	font-family: "button";
+	src: url(fonts/racha_bold.ttf);
+}
+
+ul {
+	list-style-type: none;
+	margin: auto;
+	padding: 0;
+	width: 550px;
+	overflow: hidden;
+	background-color: #222;
+	/*position: -webkit-sticky;*/
+	/*position: sticky;*/
+	top: 0;
+}
+
+li {
+	float: left;
+}
+
+li a {
+	font-family: paragraph;
+ 	display: block;
+ 	color: white;
+ 	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover {
+	background-color: #080808;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+a:hover {
+	color: #AF4C50;
+}
+
+
+.active {
+	background-color: #AF4C50;
+}
+
+body {
+	margin: 0;
+	background: #FFFAFA;
+}
+
+h1 {
+	font-size: 230%;
+	text-align: center;
+	line-height: 2;
+	font-family: page;
+	color: white;
+	border: 0px;
+	border-radius: 10px 10px 0 0;
+	background: #333333;
+	padding: 10px 0 0 0;
+	width: 550px;
+	margin: 10px auto auto auto;
+}
+
+h2 {
+	font-size: 150%;
+	font-family: paragraph;
+	margin: 20px auto 20px auto;
+	text-align: left;
+	width: 550px;
+	color: #222;
+}
+
+h3 {
+	font-family: paragraph;
+	margin: 20px auto 20px auto;
+	text-align: left;
+	width: 550px;
+	color: #8B3D40;
+}
+
+p {
+	font-family: paragraph;
+	margin: 10px auto 0px auto;
+	text-align: justify;
+	line-height: 2;
+	width: 550px;
+}
+
+img {
+	display: block;
+	border-radius: 10px 10px 0 0;
+	margin: 20px auto 0 auto;
+	width: 550px;
+}
+
+figcaption {
+	display: block;
+	color: white;
+	background: #222;
+	border-radius: 0 0 10px 10px;
+	font-size: 75%;
+	text-align: center;
+	width: 550px;
+	line-height: 1.5;
+	margin: 0 auto 20px auto;
+	padding: 7px 0 7px 0;
+}
+
+tag {
+	display: inline-block;
+	color: white;
+	background: #222;
+	border-radius: 5px 5px 5px 5px;
+	font-family: button;
+	text-align: center;
+	width: auto;
+	line-height: 1;
+	margin: 0 auto 20px auto;
+	padding: 7px 7px 0px 5px;
+}
+
+tag:hover {
+	background: #AF4C50;
+}
+
+tag:a {
+	background: #AF4C50;
+}
+
+code {
+	display: block;
+	width: 543px;
+	line-height: 0.5;
+	border-style: none none none solid;
+	border-width: 7px;
+	border-color: #AF4C50;
+	text-indent: 20px;
+	margin: 0 auto 0 auto;
+	padding: 10px 0 10px 0;
+	background: #ffdedb;	
+}
+
+terminal {
+	display: block;
+	width: 543px;
+	line-height: 0.5;
+	font-family: monospace;
+	color: #ffffff;
+	border-style: none none none solid;
+	border-width: 7px;
+	border-color: #b0b0b0;
+	text-indent: 20px;
+	margin: 0 auto 0 auto;
+	padding: 10px 0 10px 0;
+	background: #333333;	
+}
+
+hr.main {
+	margin-top: 0px;
+	border: 3px solid #AF4C50;
+	width: 544px;
+}
+
+hr.sub {
+	border-top: 1px solid #AF4C50;
+	width: 400px;
+	margin-top: 15px;
+}
+
+hr.end {
+	margin-top: 20px;
+	margin-bottom: 0px;
+    border: 3px solid #AF4C50;
+    width: 544px;
+}
+
+/* Buttons */
+.button {
+    display: block;
+    overflow: hidden;
+    padding: 7px 50px 0px 50px;
+    border-radius: 5px;
+    text-align: center;
+    font-family: "button";
+    font-size: 110%;
+    margin: 10px auto 10px auto;
+    cursor: pointer;
+}
+
+.button_fill {
+    border: none;
+    background-color: #408B3D;
+    color: white;
+}
+
+.button_fill:hover {
+    background-color: #222;
+}
+
+.button_outline {
+    border: none;
+    background-color: #AF4C50;
+    color: #FFFAFA;
+}
+
+.button_outline:hover {
+    background-color: #222;
+    color: #FFFAFA;
+}
+/* End of Buttons */
+
+/* Footer */
+footer {
+	display: block;
+	margin: 0 auto 0 auto;
+	padding: 5px 0 5px 0;
+	color: white;
+	text-align: center;
+	line-height: 1.5;
+	background: #222;
+	width: 550px;
+}
+
+p.footer {
+	text-align: center;
+}
+/* End of Footer */
+
+@media only screen and (max-width: 600px) {
+	h2, h3, p, img, figcaption, code {
+		width: 90vw;
+	}
+
+	hr.main {
+		width: 93.5vw;
+	}
+
+	hr.sub {
+		width: 70vw;
+	}
+
+	ul {
+		width: 95vw;
+	}
+
+	h1 {
+	/*	margin-top: -8px;*/
+	/*	border-radius: 0;*/
+		width: 95vw;
+		font-size: 200%;	
+	}
+
+	footer, hr.end {
+		width: 100vw;
+	}
+}
