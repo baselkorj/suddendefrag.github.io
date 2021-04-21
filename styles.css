@@ -100,6 +100,14 @@ p {
 	width: 550px;
 }
 
+pre {
+	font-family: paragraph;
+	margin: 10px auto 0px auto;
+	text-align: justify;
+	line-height: 2;
+	width: 550px;
+}
+
 img {
 	display: block;
 	border-radius: 10px 10px 0 0;
@@ -137,7 +145,21 @@ tag:hover {
 	background: #AF4C50;
 }
 
-tag:a {
+mtag {
+	display: inline-block;
+	color: white;
+	background: #222;
+	border-radius: 5px 5px 5px 5px;
+	font-family: button;
+	font-size: 75%;
+	text-align: center;
+	width: auto;
+	line-height: 1;
+	margin: 0 auto 20px auto;
+	padding: 6px 6px 0px 5px;
+}
+
+mtag:hover {
 	background: #AF4C50;
 }
 
@@ -203,23 +225,23 @@ hr.end {
 
 .button_fill {
     border: none;
-    background-color: #408B3D;
+    background-color: #222;
     color: white;
 }
 
 .button_fill:hover {
-    background-color: #222;
+    background-color: #AF4C50;
 }
 
 .button_outline {
-    border: none;
-    background-color: #AF4C50;
-    color: #FFFAFA;
+    border-width: 1px;
+    border-color: #222;
+    color: #222;
 }
 
 .button_outline:hover {
-    background-color: #222;
-    color: #FFFAFA;
+    border-color: #AF4C50;
+    color: #AF4C50;
 }
 /* End of Buttons */
 
