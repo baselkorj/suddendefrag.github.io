@@ -121,6 +121,7 @@ figcaption {
 	background: #222;
 	border-radius: 0 0 10px 10px;
 	font-size: 75%;
+	font-family: paragraph;
 	text-align: center;
 	width: 550px;
 	line-height: 1.5;
@@ -255,6 +256,7 @@ footer {
 	margin: 0 auto 0 auto;
 	padding: 5px 0 5px 0;
 	color: white;
+	font-family: paragraph;
 	text-align: center;
 	line-height: 1.5;
 	background: #222;
