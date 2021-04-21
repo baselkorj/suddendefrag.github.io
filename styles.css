@@ -267,7 +267,7 @@ p.footer {
 /* End of Footer */
 
 @media only screen and (max-width: 600px) {
-	h2, h3, p, img, figcaption, code {
+	h2, h3, p, img, figcaption, code, terminal {
 		width: 90vw;
 	}
 
