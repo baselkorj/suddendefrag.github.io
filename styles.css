@@ -193,8 +193,10 @@ terminal {
 
 hr.main {
 	margin-top: 0px;
-	border: 3px solid #AF4C50;
-	width: 544px;
+	border: none;
+	height: 6px;
+	background-color: #AF4C50;
+    width: 550px;
 }
 
 hr.sub {
@@ -269,15 +271,11 @@ p.footer {
 		width: 90vw;
 	}
 
-	hr.main {
-		width: 93.5vw;
-	}
-
 	hr.sub {
 		width: 70vw;
 	}
 
-	ul {
+	hr.main, ul {
 		width: 95vw;
 	}
 
