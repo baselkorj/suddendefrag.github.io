@@ -20,13 +20,34 @@
 <hr class="main">
 
 <h2>How to Duplicate a Flutter + Firebase Project</h2>
-<p style="color:#555555; font-size:90%; margin-top:-5px;">Published on March 8th, 2020</p>
+<p style="color:#555555; font-size:90%; margin-top:-5px;">Published on July 4th, 2021</p>
 
 <h3>Introduction</h3>
-<p>When working on multiple Flutter and Firebase projects, you might often feel the need to duplicate an existing Flutter project and use it as a template for a new project, maintaining the graphical interface, Firebase code, and basic logic, instead of starting all over.</p>
+<p>When working on multiple Flutter and Firebase projects, you might often feel the need to duplicate an existing Flutter project and use it as a template for a new project, maintaining the graphical interface, Firebase code, and basic logic, instead of starting all over. This isn’t a straightforward process of copy pasting your project files, as some changes have to be made to the workspace in order to match the newly created app. Moreover, while this method is targeted on android projects, the same process could be followed with slight changes depending on the platform. Keep in mind that this tutorial assumes that you have basic knowledge of Flutter and how Firebase integration works.</p>
 
 <h3>Prerequisites</h3>
-<p></p>
+<p><strong>Step 1:</strong> The first step in duplicating a flutter project, and the most obvious one at that, is to begin by copying the old project folder and giving it a new app ID of your choice.</p>
+<p><strong>Step 2:</strong> With the new directory created, open a terminal in the new project’s directory, using an IDE or any terminal application and execute the command:</p>
+<terminal>$ flutter clean</terminal>
+<p>Which will clean your Flutter project and remove any previous builds or generated cache. This is essential to avoid any collusion later and to make <strong>Step 4</strong> faster.</p>
+<p><strong>Step 3:</strong> Now go to the ‘~/android/app/’ directory of your app, where you’ll find a JSON file named ‘google-services.json’, delete it. It contains the old Firebase configuration for the flutter project. This file is going to be regenerated later.</p>
+<p><strong>Step 4:</strong> For this step, you would need an IDE with the ability to search for text inside files under multiple directories in your project. In my case, I’m using <strong><a href="https://vscodium.com/" target="_blank">VSCodium</a></strong>, an opensource binary of Visual Studio Code. So open your preferred IDE, and search for the ID of the old app, then replace all the instances of it with the ID of the new app.</p>
+
+<h3>Going Firebase</h3>
+<p><strong>Step 5:</strong> Login to your Firebase account and visit the console. There you’ll have to create a new project for the duplicate app as you would do for any other app.</p>
+<p><strong>Step 6:</strong> You will now have to generate a new SHA-1 key for your project using ‘gradlew’. To do so, go to the ‘~/android/’ directory of the project, open a terminal there, and execute the following line, which generates new signing keys for the project. Note that this step requires that you have the right version of the Java Runtime Environment JRE installed and configured.</p>
+<terminal>$ ./gradlew signingReport</terminal>
+<p>A number of keys will be generated in different formats. Copy the SHA-1 key when you find it, you’re going to need that in the next step.</p>
+<p><strong>Step 7:</strong> After the Firebase project has been created, you would need to generate a new ‘google-services.json’ file through the ‘Add Your App’ wizard. Where you’re going to input the the application ID of the app as present in the ‘~/android/app/build.gradle’ file. Before you register your app, remember the SHA-1 key generated in the previous step? Make sure you paste that into the ‘Debug Signing Certificate’ field, in order to enable the authentication features of Firebase, such as authentication through Google and via a phone number.</p>
+<p><strong>Step 8:</strong> When the app is registered, Firebase will generate a new ‘google-services.json’ configuration file, download it and place it in its original directory at ‘~/android/app/’.</p>
+<p><strong>Step 9:</strong> Since you’ve created a new Firebase project, the previous Cloud Firestore rules you set up in the previous project have to be coppied over from the rules tab. These rules include the read and write conditions.</p>
+
+<h3>Optional Steps</h3>
+<p><strong>Query Indexes:</strong> This step depends on whether your app requires Query Indexes or not. As a reminder, indexes are needed for when your app requests Firebase for data with multiple conditions. For example, if I wanted to retrieve a list of people with the ages between 14 and 28, making sure they’re all above 35kg and are male, an index has to be prepared for this condition. If you had such conditions set up in the previous app, you can view the indexes tab and recreate the rules in the new Firebase project accordingly.</p>
+<p><strong>Sign-in Options:</strong> The final step in the Firebase project duplication process is to make sure you turn on the sign in options you had enabled in the previous project and add the debugging accounts or phone numbers needed.</p>
+
+<h3>Finishing Up</h3>
+<p>With the essentials out of the way, it is time to start debugging and making changes to the new app. Whether this app has a different look, a different target audience, or perhaps it is using a different payment model. These changes differ from one project to the other and have to be made according to the application requirements. Additionally, depending on whether you’re using the storage bucket feature or have Google Analytics enabled. You may have to spend an extra amount of time getting these features in order to accommodate the changes.</p>
 
 <hr class="end">
 <footer>Sudden Defrag © 2021</footer>
