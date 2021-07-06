@@ -268,8 +268,12 @@ p.footer {
 /* End of Footer */
 
 @media only screen and (max-width: 600px) {
-	h2, h3, p, img, figcaption, code, terminal {
+	h2, h3, p, img, figcaption {
 		width: 90vw;
+	}
+
+	code, terminal {
+		width: 81vw;
 	}
 
 	hr.sub {
