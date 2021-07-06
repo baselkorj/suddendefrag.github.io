@@ -1,0 +1,64 @@
+<!DOCTYPE.html>
+<html>
+<head>
+<title>Manually Configure a Synaptics Touchpad By Editing Xorg Configs - Sudden Defrag</title>
+<link rel="stylesheet" href="../../../styles.css">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta charset="utf-8"/>
+</head>
+<body>
+<div class="header">
+	<h1>Sudden Defrag</h1>
+</div>
+
+<ul>
+	<li><a href="../../../">Home</a></li>
+	<li><a class="active" href="../../">Articles</a></li>
+	<li><a href="../../../projects">Projects</a></li>
+	<li><a href="../../../about">About</a></li>
+</ul>
+<hr class="main">
+
+<h2>Manually Configure a Synaptics Touchpad By Editing Xorg Configs</h2>
+<p style="color:#555555; font-size:90%; margin-top:-5px;">Published on July 6th, 2021</p>
+
+<h3>Introduction</h3>
+<p>There are a wide variety of GUI based tools to edit the configuration of your synaptics touchpad these days and most of these tools come pre-configured in most desktop distributions. However, in some cases, you might want to edit these configurations manually. This could be because you’re trying to keep your system as minimal as possible,  in other words avoid bloat, or you simply want to learn to the underlyings of how the different input devices in an Xorg session are configured. This article will walk you through the process of determining your synaptics input identifier, creating a copy of the configuration file in the shared user directory, and the different options that can be used to customize your touch pad response.</p>
+
+<h3>Prerequisites</h3>
+<p>Before rushing into editing configuration files, we must first determine whether a ‘xorg.conf.d’ directory exists in at ‘/etc/X11/’. To find whether the directory exists, the change directory command can be used:</p>
+<terminal>$ cd /etc/X11/xorg.conf.d/</terminal>
+<p>If the directory does exist, no errors will result and you’ll be directed to the directory in question. However, if the directory does not exist, then you’ll receive something along the lines of:</p>
+<terminal>bash: cd: /etc/X11/xorg.conf.d/: No such file or directory</terminal>
+<p>If this happens, you can simply create the directory using the ‘mkdir’ command while making sure you’ve obtained superuser permissions first:</p>
+<terminal>$ mkdir /etc/X11/xorg.conf.d/</terminal>
+
+<h3>Understanding the Contents of ‘xorg.conf.d’</h3>
+<p>Once it is created, it is time to check out the contents of ‘xorg.conf.d’ in the shared user directory. To do so, simply list the files within it using:</p>
+<terminal>$ ls /usr/share/X11/xorg.conf.d/</terminal>
+<p>Assuming you have the synaptics drivers and the ‘libinput’ package installed, the contents of the ‘/usr/share/X11/xorg.conf.d/’ directory should show the following files, or something similar:</p>
+<terminal>40-libinput.conf 70-synaptics.conf</terminal>
+<p>The two points of interest in this directory are ‘40-libinput.conf’ and ‘70-synaptics.conf’. The first of these files is the configuration file for the libinput service, which handles multiple input devices in your system such as keyboards and joysticks. The other one is the configuration file for the synaptics driver, and therefore contains related touchpad configurations.</p>
+<p>If you happen to have both of these files present, it means you have both libinput and synaptics installed and configurable. You’ll also notice that all of the config files are preceded by different numbers. These numbers dictate the numerical order of the files in terms of priority, meaning that in this scenario, the synaptics file will take priority.</p>
+
+<h3>Preparing the Configuration File for Editing</h3>
+<p>Now that the location of the synaptics config file has been specified, you might be inclined to immediately attempt to edit its contents. However, editing this file is of no use as it is simply a template for reference that isn’t actually processed. You are now presented with two options, either create a symbolic link of this file in the directory ‘/etc/X11/xorg.conf.d/’, or simply copy the file over to it. The difference is that a symbolic link is simply a link to the file in ‘/usr/share/X11/xorg.conf.d/’, and while this allows you to sync edits in both locations, your system might overwrite the file in the shared user directory, thus rendering both files useless. Because of this, we’ll copy the file over instead, using the following command, under superuser permissions:</p>
+<terminalS></terminalS>
+<terminal>cp /usr/share/X11/xorg.conf.d/70-synaptics.conf /etc/X11/xorg.conf.d/70-synaptics.conf</terminal>
+
+<h3>Editing the Synaptics Configuration File</h3>
+<p>With the synaptics configuration file prepared for editing, it is time to go over the structure of the file and how it is interpreted. The contents of this file can be viewed by using the ‘cat’ command, which should return multiple lines of code. You should find a code block similar to the one below, at the beginning of your file:</p>
+<code>Section "InputClass"</code>
+<code style="margin-top: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;Identifier&nbsp;&nbsp;&nbsp;&nbsp;"touchpad catchall"</code>
+<code style="margin-top: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;Driver&nbsp;&nbsp;&nbsp;&nbsp;"synaptics"</code>
+<code style="margin-top: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;MatchIsTouchpad&nbsp;&nbsp;&nbsp;&nbsp;"on"</code>
+<code style="margin-top: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;Option&nbsp;&nbsp;&nbsp;&nbsp;"Parameter"&nbsp;&nbsp;&nbsp;&nbsp;"Value"</code>
+<code style="margin-top: 0px;">EndSection</code>
+<p>The code block contains an identifier for the input device along with a line that specifies the driver used. The fifth line shows how an option sentence looks, which begins with the word ‘Option’, followed by the ‘Parameter’ to be configured, and its chosen variable. There are a set of parameters to check from and each are unique to the touchpad model you’re using. For reference, the Arch Linux documentation page titled <strong><a href="https://wiki.archlinux.org/title/Touchpad_Synaptics" target="_blank">Touchpad Synaptics</a></strong> contains some of the most used parameters in addition to a detailed description of each. Of course, in order to apply these settings, you’d have to reboot or simply reload the X session, in order words, log out and log back in.</p>
+
+<h3>Sources</h3>
+<p><strong><a href="https://wiki.archlinux.org/title/Touchpad_Synaptics" target="_blank">Touchpad Synaptics — ArchWiki ↪</a></strong></p>
+<p><strong><a href="https://wiki.archlinux.org/title/Touchpad_Synaptics" target="_blank">libinput — ArchWiki ↪</a></strong></p>
+
+<hr class="end">
+<footer>Sudden Defrag © 2021</footer>
