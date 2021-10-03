@@ -1,11 +1,11 @@
 @font-face {
 	font-family: "page";
-	src: url(fonts/deja_serif_bold.ttf);
+	src: url(fonts/montserrat-bold.ttf);
 }
 
 @font-face {
 	font-family: "paragraph";
-	src: url(fonts/lib_serif.ttf);
+	src: url(fonts/opensans.ttf);
 }
 
 @font-face {
